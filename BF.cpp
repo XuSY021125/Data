@@ -1,25 +1,31 @@
 #include <stdio.h>
 #include <string.h>
-//´®ÆÕÍ¨Ä£Ê½Æ¥ÅäËã·¨µÄÊµÏÖº¯Êı£¬ÆäÖĞ BÊÇÎ±Ö÷´®£¬AÊÇÎ±×Ó´®
-int mate(char * B,char *A){
+//ä¸²æ™®é€šæ¨¡å¼åŒ¹é…ç®—æ³•çš„å®ç°å‡½æ•°ï¼Œå…¶ä¸­ Bæ˜¯ä¼ªä¸»ä¸²ï¼ŒAæ˜¯ä¼ªå­ä¸²
+int mate(char * B,char *A)
+{
     int i=0,j=0;
-    while (i<strlen(B) && j<strlen(A)) {
-        if (B[i]==A[j]) {
+    while (i<strlen(B) && j<strlen(A)) 
+    {
+        if (B[i]==A[j]) 
+        {
             i++;
             j++;
-        }else{
+        }else
+        {
             i=i-j+1;
             j=0;
         }
     }
-    //Ìø³öÑ­»·ÓĞÁ½ÖÖ¿ÉÄÜ£¬i=strlen(B)ËµÃ÷ÒÑ¾­±éÀúÍêÖ÷´®£¬Æ¥ÅäÊ§°Ü£»j=strlen(A),ËµÃ÷×Ó´®±éÀúÍê³É£¬ÔÚÖ÷´®ÖĞ³É¹¦Æ¥Åä
-    if (j==strlen(A)) {
+    //è·³å‡ºå¾ªç¯æœ‰ä¸¤ç§å¯èƒ½ï¼Œi=strlen(B)è¯´æ˜å·²ç»éå†å®Œä¸»ä¸²ï¼ŒåŒ¹é…å¤±è´¥ï¼›j=strlen(A),è¯´æ˜å­ä¸²éå†å®Œæˆï¼Œåœ¨ä¸»ä¸²ä¸­æˆåŠŸåŒ¹é…
+    if (j==strlen(A)) 
+    {
         return i-strlen(A)+1;
     }
-    //ÔËĞĞµ½´Ë£¬Îªi==strlen(B)µÄÇé¿ö
+    //è¿è¡Œåˆ°æ­¤ï¼Œä¸ºi==strlen(B)çš„æƒ…å†µ
     return 0;
 }
-int main() {
+int main() 
+{
     int number=mate("ababcabcacbab", "abcac");
     printf("%d",number);
     return 0;
