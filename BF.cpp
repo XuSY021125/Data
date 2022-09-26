@@ -10,7 +10,8 @@ int mate(char * B,char *A)
         {
             i++;
             j++;
-        }else
+        }
+        else
         {
             i=i-j+1;
             j=0;
