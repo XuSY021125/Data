@@ -1,59 +1,71 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define keyType int
-typedef struct {
-    keyType key;//²éÕÒ±íÖĞÃ¿¸öÊı¾İÔªËØµÄÖµ
-    //Èç¹ûĞèÒª£¬»¹¿ÉÒÔÌí¼ÓÆäËûÊôĞÔ
+typedef struct 
+{
+    keyType key;//æŸ¥æ‰¾è¡¨ä¸­æ¯ä¸ªæ•°æ®å…ƒç´ çš„å€¼
+    //å¦‚æœéœ€è¦ï¼Œè¿˜å¯ä»¥æ·»åŠ å…¶ä»–å±æ€§
 }ElemType;
-typedef struct{
-    ElemType *elem;//´æ·Å²éÕÒ±íÖĞÊı¾İÔªËØµÄÊı×é
-    int length;//¼ÇÂ¼²éÕÒ±íÖĞÊı¾İµÄ×ÜÊıÁ¿
+typedef struct
+{
+    ElemType *elem;//å­˜æ”¾æŸ¥æ‰¾è¡¨ä¸­æ•°æ®å…ƒç´ çš„æ•°ç»„
+    int length;//è®°å½•æŸ¥æ‰¾è¡¨ä¸­æ•°æ®çš„æ€»æ•°é‡
 }SSTable;
-//´´½¨²éÕÒ±í
-void Create(SSTable **st,int length){
+//åˆ›å»ºæŸ¥æ‰¾è¡¨
+void Create(SSTable **st,int length)
+{
     (*st)=(SSTable*)malloc(sizeof(SSTable));
     (*st)->length=length;
     (*st)->elem = (ElemType*)malloc((length+1)*sizeof(ElemType));
-    printf("ÊäÈë±íÖĞµÄÊı¾İÔªËØ£º\n");
-    //¸ù¾İ²éÕÒ±íÖĞÊı¾İÔªËØµÄ×Ü³¤¶È£¬ÔÚ´æ´¢Ê±£¬´ÓÊı×éÏÂ±êÎª 1 µÄ¿Õ¼ä¿ªÊ¼´æ´¢Êı¾İ
-    for (int i=1; i<=length; i++) {
+    printf("è¾“å…¥è¡¨ä¸­çš„æ•°æ®å…ƒç´ ï¼š\n");
+    //æ ¹æ®æŸ¥æ‰¾è¡¨ä¸­æ•°æ®å…ƒç´ çš„æ€»é•¿åº¦ï¼Œåœ¨å­˜å‚¨æ—¶ï¼Œä»æ•°ç»„ä¸‹æ ‡ä¸º 1 çš„ç©ºé—´å¼€å§‹å­˜å‚¨æ•°æ®
+    for (int i=1; i<=length; i++) 
+    {
         scanf("%d",&((*st)->elem[i].key));
     }
 }
-//ÕÛ°ë²éÕÒËã·¨
-int Search_Bin(SSTable *ST,keyType key){
-    int low=1;//³õÊ¼×´Ì¬ low Ö¸ÕëÖ¸ÏòµÚÒ»¸ö¹Ø¼ü×Ö
-    int high=ST->length;//high Ö¸Ïò×îºóÒ»¸ö¹Ø¼ü×Ö
+//æŠ˜åŠæŸ¥æ‰¾ç®—æ³•
+int Search_Bin(SSTable *ST,keyType key)
+{
+    int low=1;//åˆå§‹çŠ¶æ€ low æŒ‡é’ˆæŒ‡å‘ç¬¬ä¸€ä¸ªå…³é”®å­—
+    int high=ST->length;//high æŒ‡å‘æœ€åä¸€ä¸ªå…³é”®å­—
     int mid;
-    while (low<=high) {
-        mid=(low+high)/2;//int ±¾ÉíÎªÕûĞÎ£¬ËùÒÔ£¬mid Ã¿´ÎÎªÈ¡ÕûµÄÕûÊı
-        if (ST->elem[mid].key==key)//Èç¹û mid Ö¸ÏòµÄÍ¬Òª²éÕÒµÄÏàµÈ£¬·µ»Ø mid ËùÖ¸ÏòµÄÎ»ÖÃ
+    while (low<=high) 
+    {
+        mid=(low+high)/2;       //intä¸ºæ•´å½¢ï¼Œæ‰€ä»¥midæ¯æ¬¡ä¸ºå–æ•´çš„æ•´æ•°
+        if (ST->elem[mid].key==key)     //å¦‚æœ mid æŒ‡å‘çš„åŒè¦æŸ¥æ‰¾çš„ç›¸ç­‰ï¼Œè¿”å› mid æ‰€æŒ‡å‘çš„ä½ç½®
         {
             return mid;
-        }else if(ST->elem[mid].key>key)//Èç¹ûmidÖ¸ÏòµÄ¹Ø¼ü×Ö½Ï´ó£¬Ôò¸üĞÂ high Ö¸ÕëµÄÎ»ÖÃ
+        }
+        else if(ST->elem[mid].key>key)    //å¦‚æœmidæŒ‡å‘çš„å…³é”®å­—è¾ƒå¤§ï¼Œåˆ™æ›´æ–° high æŒ‡é’ˆçš„ä½ç½®
         {
             high=mid-1;
         }
-        //·´Ö®£¬Ôò¸üĞÂ low Ö¸ÕëµÄÎ»ÖÃ
-        else{
+        //åä¹‹ï¼Œåˆ™æ›´æ–° low æŒ‡é’ˆçš„ä½ç½®
+        else
+        {
             low=mid+1;
         }
     }
     return 0;
 }
-int main(int argc, const char * argv[]) {
+int main(int argc, const char * argv[]) 
+{
     SSTable *st;
     Create(&st, 11);
     getchar();
-    printf("ÇëÊäÈë²éÕÒÊı¾İµÄ¹Ø¼ü×Ö£º\n");
+    printf("è¯·è¾“å…¥æŸ¥æ‰¾æ•°æ®çš„å…³é”®å­—ï¼š\n");
     int key;
     scanf("%d",&key);
     int location=Search_Bin(st, key);
-    //Èç¹û·µ»ØÖµÎª 0£¬ÔòÖ¤Ã÷²éÕÒ±íÖĞÎ´²éµ½ key Öµ£¬
-    if (location==0) {
-        printf("²éÕÒ±íÖĞÎŞ¸ÃÔªËØ");
-    }else{
-        printf("Êı¾İÔÚ²éÕÒ±íÖĞµÄÎ»ÖÃÎª£º%d",location);
+    //å¦‚æœè¿”å›å€¼ä¸º 0ï¼Œåˆ™è¯æ˜æŸ¥æ‰¾è¡¨ä¸­æœªæŸ¥åˆ° key å€¼ï¼Œ
+    if (location==0) 
+    {
+        printf("æŸ¥æ‰¾è¡¨ä¸­æ— è¯¥å…ƒç´ ");
+    }
+    else
+    {
+        printf("æ•°æ®åœ¨æŸ¥æ‰¾è¡¨ä¸­çš„ä½ç½®ä¸ºï¼š%d",location);
     }
     return 0;
 }
