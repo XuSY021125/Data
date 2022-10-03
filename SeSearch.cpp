@@ -1,48 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define keyType int
-typedef struct {
-    keyType key;//²éÕÒ±íÖĞÃ¿¸öÊı¾İÔªËØµÄÖµ
-    //Èç¹ûĞèÒª£¬»¹¿ÉÒÔÌí¼ÓÆäËûÊôĞÔ
+typedef struct 
+{
+    keyType key;//æŸ¥æ‰¾è¡¨ä¸­æ¯ä¸ªæ•°æ®å…ƒç´ çš„å€¼
+    //å¦‚æœéœ€è¦ï¼Œè¿˜å¯ä»¥æ·»åŠ å…¶ä»–å±æ€§
 }ElemType;
-typedef struct{
-    ElemType *elem;//´æ·Å²éÕÒ±íÖĞÊı¾İÔªËØµÄÊı×é
-    int length;//¼ÇÂ¼²éÕÒ±íÖĞÊı¾İµÄ×ÜÊıÁ¿
+typedef struct
+{
+    ElemType *elem;//å­˜æ”¾æŸ¥æ‰¾è¡¨ä¸­æ•°æ®å…ƒç´ çš„æ•°ç»„
+    int length;//è®°å½•æŸ¥æ‰¾è¡¨ä¸­æ•°æ®çš„æ€»æ•°é‡
 }SSTable;
-//´´½¨²éÕÒ±í
-void Create(SSTable **st,int length){
+//åˆ›å»ºæŸ¥æ‰¾è¡¨
+void Create(SSTable **st,int length)
+{
     (*st)=(SSTable*)malloc(sizeof(SSTable));
     (*st)->length=length;
     (*st)->elem =(ElemType*)malloc((length+1)*sizeof(ElemType));
-    printf("ÊäÈë±íÖĞµÄÊı¾İÔªËØ£º\n");
-    //¸ù¾İ²éÕÒ±íÖĞÊı¾İÔªËØµÄ×Ü³¤¶È£¬ÔÚ´æ´¢Ê±£¬´ÓÊı×éÏÂ±êÎª 1 µÄ¿Õ¼ä¿ªÊ¼´æ´¢Êı¾İ
-    for (int i=1; i<=length; i++) {
+    printf("è¾“å…¥è¡¨ä¸­çš„æ•°æ®å…ƒç´ ï¼š\n");
+    //æ ¹æ®æŸ¥æ‰¾è¡¨ä¸­æ•°æ®å…ƒç´ çš„æ€»é•¿åº¦ï¼Œåœ¨å­˜å‚¨æ—¶ï¼Œä»æ•°ç»„ä¸‹æ ‡ä¸º 1 çš„ç©ºé—´å¼€å§‹å­˜å‚¨æ•°æ®
+    for (int i=1; i<=length; i++)
+    {
         scanf("%d",&((*st)->elem[i].key));
     }
 }
-//²éÕÒ±í²éÕÒµÄ¹¦ÄÜº¯Êı£¬ÆäÖĞkeyÎª¹Ø¼ü×Ö
-int Search_seq(SSTable *st,keyType key){
-    st->elem[0].key=key;//½«¹Ø¼ü×Ö×÷ÎªÒ»¸öÊı¾İÔªËØ´æ·Åµ½²éÕÒ±íµÄµÚÒ»¸öÎ»ÖÃ£¬Æğ¼àÊÓÉÚµÄ×÷ÓÃ
+//æŸ¥æ‰¾è¡¨æŸ¥æ‰¾çš„åŠŸèƒ½å‡½æ•°ï¼Œå…¶ä¸­keyä¸ºå…³é”®å­—
+int Search_seq(SSTable *st,keyType key)
+{
+    st->elem[0].key=key;//å°†å…³é”®å­—ä½œä¸ºä¸€ä¸ªæ•°æ®å…ƒç´ å­˜æ”¾åˆ°æŸ¥æ‰¾è¡¨çš„ç¬¬ä¸€ä¸ªä½ç½®ï¼Œèµ·ç›‘è§†å“¨çš„ä½œç”¨
     int i=st->length;
-    //´Ó²éÕÒ±íµÄ×îºóÒ»¸öÊı¾İÔªËØÒÀ´Î±éÀú£¬Ò»Ö±±éÀúµ½Êı×éÏÂ±êÎª0
-    while (st->elem[i].key!=key) {
+    //ä»æŸ¥æ‰¾è¡¨çš„æœ€åä¸€ä¸ªæ•°æ®å…ƒç´ ä¾æ¬¡éå†ï¼Œä¸€ç›´éå†åˆ°æ•°ç»„ä¸‹æ ‡ä¸º0
+    while (st->elem[i].key!=key)
+    {
         i--;
     }
-    //Èç¹û i=0£¬ËµÃ÷²éÕÒÊ§°Ü£»·´Ö®£¬·µ»ØµÄÊÇº¬ÓĞ¹Ø¼ü×ÖkeyµÄÊı¾İÔªËØÔÚ²éÕÒ±íÖĞµÄÎ»ÖÃ
+    //å¦‚æœ i=0ï¼Œè¯´æ˜æŸ¥æ‰¾å¤±è´¥ï¼›åä¹‹ï¼Œè¿”å›çš„æ˜¯å«æœ‰å…³é”®å­—keyçš„æ•°æ®å…ƒç´ åœ¨æŸ¥æ‰¾è¡¨ä¸­çš„ä½ç½®
     return i;
 }
-int main() {
+int main()
+{
     SSTable *st;
     Create(&st, 6);
     getchar();
-    printf("ÇëÊäÈë²éÕÒÊı¾İµÄ¹Ø¼ü×Ö£º\n");
+    printf("è¯·è¾“å…¥æŸ¥æ‰¾æ•°æ®çš„å…³é”®å­—ï¼š\n");
     int key;
     scanf("%d",&key);
     int location=Search_seq(st, key);
-    if (location==0) {
-        printf("²éÕÒÊ§°Ü");
-    }else{
-        printf("Êı¾İÔÚ²éÕÒ±íÖĞµÄÎ»ÖÃÎª£º%d",location);
+    if (location==0)
+    {
+        printf("æŸ¥æ‰¾å¤±è´¥");
+    }
+    else
+    {
+        printf("æ•°æ®åœ¨æŸ¥æ‰¾è¡¨ä¸­çš„ä½ç½®ä¸ºï¼š%d",location);
     }
     return 0;
 }
