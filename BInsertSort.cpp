@@ -1,37 +1,45 @@
 #include <stdio.h>
-void print(int a[], int n ,int i){
+void print(int a[], int n ,int i)
+{
     printf("%d:",i);
-    for(int j=0; j<n; j++){
+    for(int j=0; j<n; j++)
+    {
         printf("%d",a[j]);
     }
     printf("\n");
 }
-void BInsertSort(int a[],int size){
+void BInsertSort(int a[],int size)
+{
     int i,j,low = 0,high = 0,mid;
     int temp = 0;
-    for (i=1; i<size; i++) {
+    for (i=1; i<size; i++) 
+    {
         low=0;
         high=i-1;
         temp=a[i];
-        //²ÉÓÃÕÛ°ë²éÕÒ·¨ÅĞ¶Ï²åÈëÎ»ÖÃ£¬×îÖÕ±äÁ¿ low ±íÊ¾²åÈëÎ»ÖÃ
-        while (low<=high) {
+        //é‡‡ç”¨æŠ˜åŠæŸ¥æ‰¾æ³•åˆ¤æ–­æ’å…¥ä½ç½®ï¼Œæœ€ç»ˆå˜é‡ low è¡¨ç¤ºæ’å…¥ä½ç½®
+        while (low<=high) 
+        {
             mid=(low+high)/2;
-            if (a[mid]>temp) {
+            if (a[mid]>temp) 
+            {
                 high=mid-1;
             }else{
                 low=mid+1;
             }
         }
-        //ÓĞĞò±íÖĞ²åÈëÎ»ÖÃºóµÄÔªËØÍ³Ò»ºóÒÆ
-        for (j=i; j>low; j--) {
+        //æœ‰åºè¡¨ä¸­æ’å…¥ä½ç½®åçš„å…ƒç´ ç»Ÿä¸€åç§»
+        for (j=i; j>low; j--) 
+        {
             a[j]=a[j-1];
         }
-        a[low]=temp;//²åÈëÔªËØ
+        a[low]=temp;//æ’å…¥å…ƒç´ 
         print(a, 8, i);
     }
    
 }
-int main(){
+int main()
+{
     int a[8] = {3,1,7,5,2,4,9,6};
     BInsertSort(a, 8);
     return 0;
