@@ -1,45 +1,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 9
-//µ¥¸ö¼ÇÂ¼µÄ½á¹¹Ìå
-typedef struct {
+//å•ä¸ªè®°å½•çš„ç»“æ„ä½“
+typedef struct 
+{
     int key;
 }SqNote;
-//¼ÇÂ¼±íµÄ½á¹¹Ìå
-typedef struct {
+//è®°å½•è¡¨çš„ç»“æ„ä½“
+typedef struct 
+{
     SqNote r[MAX];
     int length;
 }SqList;
-//½»»»Á½¸ö¼ÇÂ¼µÄÎ»ÖÃ
-void swap(SqNote *a,SqNote *b){
+//äº¤æ¢ä¸¤ä¸ªè®°å½•çš„ä½ç½®
+void swap(SqNote *a,SqNote *b)
+{
     int key=a->key;
     a->key=b->key;
     b->key=key;
 }
-//²éÕÒ±íÖĞ¹Ø¼ü×ÖµÄ×îĞ¡Öµ
-int SelectMinKey(SqList *L,int i){
+//æŸ¥æ‰¾è¡¨ä¸­å…³é”®å­—çš„æœ€å°å€¼
+int SelectMinKey(SqList *L,int i)
+{
     int min=i;
-    //´ÓÏÂ±êÎª i+1 ¿ªÊ¼£¬Ò»Ö±±éÀúÖÁ×îºóÒ»¸ö¹Ø¼ü×Ö£¬ÕÒµ½×îĞ¡ÖµËùÔÚµÄÎ»ÖÃ
-    while (i+1<L->length) {
-        if (L->r[min].key>L->r[i+1].key) {
+    //ä»ä¸‹æ ‡ä¸º i+1 å¼€å§‹ï¼Œä¸€ç›´éå†è‡³æœ€åä¸€ä¸ªå…³é”®å­—ï¼Œæ‰¾åˆ°æœ€å°å€¼æ‰€åœ¨çš„ä½ç½®
+    while (i+1<L->length) 
+    {
+        if (L->r[min].key>L->r[i+1].key) 
+        {
             min=i+1;
         }
         i++;
     }
     return min;
 }
-//¼òµ¥Ñ¡ÔñÅÅĞòËã·¨ÊµÏÖº¯Êı
-void SelectSort(SqList * L){
-    for (int i=0; i<L->length; i++) {
-        //²éÕÒµÚ i µÄÎ»ÖÃËùÒª·ÅÖÃµÄ×îĞ¡ÖµµÄÎ»ÖÃ
+//ç®€å•é€‰æ‹©æ’åºç®—æ³•å®ç°å‡½æ•°
+void SelectSort(SqList * L)
+{
+    for (int i=0; i<L->length; i++) 
+    {
+        //æŸ¥æ‰¾ç¬¬ i çš„ä½ç½®æ‰€è¦æ”¾ç½®çš„æœ€å°å€¼çš„ä½ç½®
         int j=SelectMinKey(L,i);
-        //Èç¹û j ºÍ i ²»ÏàµÈ£¬ËµÃ÷×îĞ¡Öµ²»ÔÚÏÂ±êÎª i µÄÎ»ÖÃ£¬ĞèÒª½»»»
-        if (i!=j) {
+        //å¦‚æœ j å’Œ i ä¸ç›¸ç­‰ï¼Œè¯´æ˜æœ€å°å€¼ä¸åœ¨ä¸‹æ ‡ä¸º i çš„ä½ç½®ï¼Œéœ€è¦äº¤æ¢
+        if (i!=j) 
+        {
             swap(&(L->r[i]),&(L->r[j]));
         }
     }
 }
-int main() {
+int main() 
+{
     SqList * L=(SqList*)malloc(sizeof(SqList));
     L->length=8;
     L->r[0].key=49;
@@ -51,7 +61,8 @@ int main() {
     L->r[6].key=27;
     L->r[7].key=49;
     SelectSort(L);
-    for (int i=0; i<L->length; i++) {
+    for (int i=0; i<L->length; i++) 
+    {
         printf("%d ",L->r[i].key);
     }
     return 0;
