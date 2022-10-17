@@ -2,12 +2,12 @@
 #include<stdlib.h> 
 #include <string.h>
 #define TElemType int
-//¹¹Ôì½áµãµÄ½á¹¹Ìå
+//æ„é€ ç»“ç‚¹çš„ç»“æ„ä½“
 typedef struct BiTNode{
-    TElemType data;//Êı¾İÓò
-    struct BiTNode *lchild,*rchild;//×óÓÒº¢×ÓÖ¸Õë
+    TElemType data;//æ•°æ®åŸŸ
+    struct BiTNode *lchild,*rchild;//å·¦å³å­©å­æŒ‡é’ˆ
 }BiTNode,*BiTree;
-//³õÊ¼»¯Ê÷µÄº¯Êı
+//åˆå§‹åŒ–æ ‘çš„å‡½æ•°
 void CreateBiTree(BiTree *T){
     *T=(BiTNode*)malloc(sizeof(BiTNode));
     (*T)->data=1;
@@ -33,23 +33,24 @@ void CreateBiTree(BiTree *T){
     (*T)->lchild->lchild->lchild=NULL;
     (*T)->lchild->lchild->rchild=NULL;
 }
-//Ä£Äâ²Ù×÷½áµãÔªËØµÄº¯Êı£¬Êä³ö½áµã±¾ÉíµÄÊıÖµ
+//æ¨¡æ‹Ÿæ“ä½œç»“ç‚¹å…ƒç´ çš„å‡½æ•°ï¼Œè¾“å‡ºç»“ç‚¹æœ¬èº«çš„æ•°å€¼
 void displayElem(BiTNode* elem){
     printf("%d ",elem->data);
 }
-//ºóĞò±éÀú
+//ååºéå†
 void PostOrderTraverse(BiTree T){
     if (T) {
-        PostOrderTraverse(T->lchild);//±éÀú×óº¢×Ó
-        PostOrderTraverse(T->rchild);//±éÀúÓÒº¢×Ó
-        displayElem(T);//µ÷ÓÃ²Ù×÷½áµãÊı¾İµÄº¯Êı·½·¨
+        PostOrderTraverse(T->lchild);//éå†å·¦å­©å­
+        PostOrderTraverse(T->rchild);//éå†å³å­©å­
+        displayElem(T);//è°ƒç”¨æ“ä½œç»“ç‚¹æ•°æ®çš„å‡½æ•°æ–¹æ³•
     }
-    //Èç¹û½áµãÎª¿Õ£¬·µ»ØÉÏÒ»²ã
+    //å¦‚æœç»“ç‚¹ä¸ºç©ºï¼Œè¿”å›ä¸Šä¸€å±‚
     return;
 }
+
 int main() {
     BiTree Tree;
     CreateBiTree(&Tree);
-    printf("ºóĞò±éÀú: \n");
+    printf("ååºéå†: \n");
     PostOrderTraverse(Tree);
 }
