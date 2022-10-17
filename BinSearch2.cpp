@@ -4,9 +4,9 @@ int main()
 {
 	int nums[6] = {}, target, i;
 	int left = 0, right = 5, mid = (left + right) / 2;
-	printf("ÇëÊäÈë¸ø¶¨µÄÄ¿±êÖµ;");
+	printf("è¯·è¾“å…¥ç»™å®šçš„ç›®æ ‡å€¼;");
 	scanf("%d", &target);
-	printf("ÇëÊäÈë¸ø¶¨µÄÊı×é;");
+	printf("è¯·è¾“å…¥ç»™å®šçš„æ•°ç»„;");
 	for (i = 0;i < 6;i++)
 	{
 		scanf("%d", &nums[i]);
@@ -18,11 +18,11 @@ int main()
 		{
 			return mid;
 		}
-		else if (nums[mid] < target)	//ËµÃ÷targetÔÚÓÒÇø¼ä
+		else if (nums[mid] < target)	//è¯´æ˜targetåœ¨å³åŒºé—´
 		{
 			left = mid +1;
 		}
-		else if (nums[mid] > target)	//ËµÃ÷targetÔÚ×óÇø¼ä
+		else if (nums[mid] > target)	//è¯´æ˜targetåœ¨å·¦åŒºé—´
 		{
 			right = mid ;
 		}
