@@ -51,6 +51,7 @@ void INOrderTraverse(BiTree T)
     //如果结点为空，返回上一层
     return;
 }
+
 int main() 
 {
     BiTree Tree;
