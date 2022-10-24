@@ -19,24 +19,25 @@ lineStack * pop(lineStack * stack)
 	{
         lineStack * p=stack;
         stack=stack->next;
-        printf("µ¯Õ»ÔªËØ£º%c \n",p->data);
+        printf("å¼¹æ ˆå…ƒç´ ï¼š%c \n",p->data);
         if (stack) 
 		{
-            printf("Õ»¶¥ÔªËØ£º%c\n",stack->data);
+            printf("æ ˆé¡¶å…ƒç´ ï¼š%c\n",stack->data);
         }
 		else
 		{
-            printf("Õ»ÒÑ¿Õ\n");
+            printf("æ ˆå·²ç©º\n");
         }
         free(p);
     }
 	else
 	{
-        printf("Õ»ÄÚÃ»ÓÐÔªËØ");
+        printf("æ ˆå†…æ²¡æœ‰å…ƒç´ ");
         return stack;
     }
     return stack;
 }
+
 int main() 
 {
     lineStack * stack=NULL;
