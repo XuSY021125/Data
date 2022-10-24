@@ -13,14 +13,14 @@ QNode* enQueue(QNode * rear,int data){
     QNode * enElem=(QNode*)malloc(sizeof(QNode));
     enElem->data=data;
     enElem->next=NULL;
-    //Ê¹ÓÃÎ²²å·¨ÏòÁ´¶ÓÁĞÖĞÌí¼ÓÊı¾İÔªËØ
+    //ä½¿ç”¨å°¾æ’æ³•å‘é“¾é˜Ÿåˆ—ä¸­æ·»åŠ æ•°æ®å…ƒç´ 
     rear->next=enElem;
     rear=enElem;
     return rear;
 }
 QNode* DeQueue(QNode * top,QNode * rear){
     if (top->next==NULL) {
-        printf("\n¶ÓÁĞÎª¿Õ");
+        printf("\né˜Ÿåˆ—ä¸ºç©º");
         return rear;
     }
     QNode * p=top->next;
@@ -32,15 +32,16 @@ QNode* DeQueue(QNode * top,QNode * rear){
     free(p);
     return rear;
 }
+
 int main() {
     QNode * queue,*top,*rear;
-    queue=top=rear=initQueue();//´´½¨Í·½áµã
-    //ÏòÁ´¶ÓÁĞÖĞÌí¼Ó½áµã£¬Ê¹ÓÃÎ²²å·¨Ìí¼ÓµÄÍ¬Ê±£¬¶ÓÎ²Ö¸ÕëĞèÒªÖ¸ÏòÁ´±íµÄ×îºóÒ»¸öÔªËØ
+    queue=top=rear=initQueue();//åˆ›å»ºå¤´ç»“ç‚¹
+    //å‘é“¾é˜Ÿåˆ—ä¸­æ·»åŠ ç»“ç‚¹ï¼Œä½¿ç”¨å°¾æ’æ³•æ·»åŠ çš„åŒæ—¶ï¼Œé˜Ÿå°¾æŒ‡é’ˆéœ€è¦æŒ‡å‘é“¾è¡¨çš„æœ€åä¸€ä¸ªå…ƒç´ 
     rear=enQueue(rear, 1);
     rear=enQueue(rear, 2);
     rear=enQueue(rear, 3);
     rear=enQueue(rear, 4);
-    //Èë¶ÓÍê³É£¬ËùÓĞÊı¾İÔªËØ¿ªÊ¼³ö¶ÓÁĞ
+    //å…¥é˜Ÿå®Œæˆï¼Œæ‰€æœ‰æ•°æ®å…ƒç´ å¼€å§‹å‡ºé˜Ÿåˆ—
     rear=DeQueue(top, rear);
     rear=DeQueue(top, rear);
     rear=DeQueue(top, rear);
