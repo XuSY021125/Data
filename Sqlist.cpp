@@ -10,18 +10,6 @@ typedef int Status;
 #define LIST_INIT_SIZE 100     //线性表存储空间的初始分配量
 #define LISTINCREMENT 10       //线性表空间的分配增量
 
-#include<stdio.h>
-#include<stdlib.h>
-typedef int ElemType;
-typedef int Status;
-#define OK 1
-#define ERROR 0
-#define ture 1
-#define false 0
-#define overflow -1
-#define LIST_INIT_SIZE 100
-#define LISTINCERMENT 10
-
 typedef struct
 {
 	ElemType* elem;				//存储空间基址
