@@ -2,7 +2,7 @@
 int main()
 {
 	int a[8]={10,22,45,67,1,3,5,7},target;
-	printf("ÇëÊäÈëtargetµÄÖµ£º");
+	printf("Ã‡Ã«Ä˜Ã¤ÄŒÃ«targetÄ¾Ã„Ã–Ä¾ÅÅŸ");
 	scanf("%d",&target);
 	int left=0,right=7,mid=(left+right)/2;
 	while(left<right)
