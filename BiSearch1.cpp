@@ -3,7 +3,7 @@ int locate(int a[],int left,int right)
 {
 
 	int mid,target;
-	printf("ÇëÊäÈëtargetµÄÖµ£º");
+	printf("Ã‡Ã«Ä˜Ã¤ÄŒÃ«targetÄ¾Ã„Ã–Ä¾ÅÅŸ");
 	scanf("%d",&target); 
 	while(left<=right)
 	{
@@ -23,13 +23,12 @@ int locate(int a[],int left,int right)
 			right=mid-1;
 			
 		}
-		else if(left==right)
-		{
-			mid=(a[mid]==target)?mid:-1;
-			return mid;
-		}
-
 	 }
+	 if(left==right)
+	{
+		mid=(a[mid]==target)?mid:-1;
+		return mid;
+	}
 }
 int main()
 {
