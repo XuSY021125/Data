@@ -1,27 +1,32 @@
-#include <stdio.h>
-int enQueue(int *a,int rear,int data){
-    a[rear]=data;
-    rear++;
-    return rear;
+#include<stdio.h>
+int enQueue(int a[],int rear,int b) 
+{
+	a[rear]=b;
+	rear++;
+	printf("第%d个元素%d入队\n",rear,b);
+	return rear;
 }
-void deQueue(int *a,int front,int rear){
-    //如果 front==rear，表示队列为空
-    while (front!=rear) {
-        printf("出队元素：%d\n",a[front]);
-        front++;
-    }
+int deQueue(int a[],int front,int rear)
+{
+	if(front!=rear)
+	{	
+		printf("第%d个元素%d出队\n",front,a[front]);
+		front++;
+		return front;
+	}
 }
-int main() {
-    int a[100];
-    int front,rear;
-    //设置队头指针和队尾指针，当队列中没有元素时，队头和队尾指向同一块地址
-    front=rear=0;
-    //入队
-    rear=enQueue(a, rear, 1);
-    rear=enQueue(a, rear, 2);
-    rear=enQueue(a, rear, 3);
-    rear=enQueue(a, rear, 4);
-    //出队
-    deQueue(a, front, rear);
-    return 0;
+int main()
+{
+	int a[10],front,rear;
+	front=rear=0;
+	rear=enQueue(a,rear,1);
+	rear=enQueue(a,rear,2);
+	rear=enQueue(a,rear,3);
+	rear=enQueue(a,rear,4);
+	rear=enQueue(a,rear,5);
+	front=deQueue(a,front,rear);
+	front=deQueue(a,front,rear);
+	front=deQueue(a,front,rear);
+	front=deQueue(a,front,rear);
+	return 0;
 }
