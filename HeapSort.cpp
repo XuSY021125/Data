@@ -1,68 +1,52 @@
-#include <stdio.h>
-#include <stdlib.h>
-#define MAX 9
-typedef struct 
+#include<stdio.h>
+int swap(int a[],int i,int j)
 {
-    int key;
-}SqNote;
-typedef struct 
+	int temp;
+	temp=a[i];
+	a[i]=a[j];
+	a[j]=temp;
+}
+int HeapAdjust(int a[],int s,int n)
 {
-    SqNote r[MAX];
-    int length;
-}SqList;
-void HeapAdjust(SqList * H,int s,int m)
-{
-    SqNote rc=H->r[s];
-    for (int j=2*s; j<=m; j*=2) 
+	int i,temp;
+	temp=a[s];
+	for(i=s*2;i<=n;i*=2)
 	{
-        if (j+1<m && (H->r[j].key<H->r[j+1].key)) 
+		if(i<n&&a[i]<a[i+1])
 		{
-            j++;
-        }
-        if (!(rc.key<H->r[j].key)) 
+			i++;
+		}
+		if(temp>=a[i])
 		{
-            break;
-        }
-        H->r[s]=H->r[j];
-        s=j;
-    }
-    H->r[s]=rc;
-}
-//交换两个记录的位置
-void swap(SqNote *a,SqNote *b)
+			break;
+		}
+		a[s]=a[i];
+		s=i;
+	}
+	a[s]=temp;
+ } 
+int HeapSort(int a[],int n)
 {
-    int key=a->key;
-    a->key=b->key;
-    b->key=key;
+	int i;
+	for(i=n/2;i>0;i--)
+	{
+		HeapAdjust(a,i,n);
+	}
+	for(i=n;i>1;i--)
+	{
+		swap(a,1,i);
+		HeapAdjust(a,1,i-1);
+	}
 }
-void HeapSort(SqList *H)
+int main()
 {
-    for (int i=H->length/2; i>0; i--) 
+	int a[12]={-1,5,10,11,4,3,8,9,1,7,2,6};
+	int i;
+	HeapSort(a,11);
+	printf("排序后的数组为：");
+	for(i=1;i<12;i++)
 	{
-        HeapAdjust(H, i, H->length);
-    }
-    for (int i=H->length; i>1; i--) 
-	{
-        swap(&(H->r[1]), &(H->r[i]));
-        HeapAdjust(H, 1, i-1);
-    }
-}
-int main() 
-{
-    SqList * L=(SqList*)malloc(sizeof(SqList));
-    L->length=8;
-    L->r[1].key=49;
-    L->r[2].key=38;
-    L->r[3].key=65;
-    L->r[4].key=97;
-    L->r[5].key=76;
-    L->r[6].key=13;
-    L->r[7].key=27;
-    L->r[8].key=49;
-    HeapSort(L);
-    for (int i=1; i<=L->length; i++) 
-	{
-        printf("%d ",L->r[i].key);
-    }
-    return 0;
+		printf(" %d",a[i]);
+	 }
+	 return 0; 
 }
