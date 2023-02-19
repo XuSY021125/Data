@@ -32,12 +32,15 @@ void CreateBiTree(BiTree *T){
     (*T)->lchild->lchild->lchild=NULL;
     (*T)->lchild->lchild->rchild=NULL;
 }
-void displayElem(BiTNode* elem){
+void displayElem(BiTNode* elem)
+{
     printf("%d ",elem->data);
 }
 //后序遍历
-void PostOrderTraverse(BiTree T){
-    if (T) {
+void PostOrderTraverse(BiTree T)
+{
+    if (T) 
+    {
         PostOrderTraverse(T->lchild);
         PostOrderTraverse(T->rchild);
         displayElem(T);
@@ -45,7 +48,8 @@ void PostOrderTraverse(BiTree T){
     return;
 }
 
-int main() {
+int main() 
+{
     BiTree Tree;
     CreateBiTree(&Tree);
     printf("后序遍历: \n");
