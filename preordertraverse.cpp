@@ -2,13 +2,11 @@
 #include<stdlib.h>
 #include <string.h>
 #define TElemType int
-//构造结点的结构体
 typedef struct BiTNode
 {
-    TElemType data;//数据域
+    TElemType data;
     struct BiTNode *lchild,*rchild;//左右孩子指针
 }BiTNode,*BiTree;
-//初始化树的函数
 void CreateBiTree(BiTree *T)
 {
     *T=(BiTNode*)malloc(sizeof(BiTNode));
@@ -34,7 +32,6 @@ void CreateBiTree(BiTree *T)
     (*T)->lchild->lchild->lchild=NULL;
     (*T)->lchild->lchild->rchild=NULL;
 }
-//模拟操作结点元素的函数，输出结点本身的数值
 void displayElem(BiTNode* elem)
 {
     printf("%d ",elem->data);
