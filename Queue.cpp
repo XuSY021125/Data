@@ -10,7 +10,7 @@ int deQueue(int a[],int front,int rear)
 {
 	if(front!=rear)
 	{	
-		printf("第%d个元素%d出队\n",front,a[front]);
+		printf("第%d个元素%d出队\n",front+1,a[front]);
 		front++;
 		return front;
 	}
