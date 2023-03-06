@@ -2,14 +2,14 @@
 int main()
 {
     int num;
-    printf("ÇëÊäÈënumµÄÖµ;");
+    printf("Ã‡Ã«ÃŠÃ¤ÃˆÃ«numÂµÃ„Ã–Âµ;");
     scanf("%d", &num);
     int min = 1, max = num, mid;
     while (min <= max) {
         mid = (min + min) / 2;
         if (num / mid == mid && num % mid == 0) 
         {
-        	printf("mid=%d",mid); 
+            printf("mid=%d",mid); 
             return true;
     	}
 		else if (mid * mid < num)
